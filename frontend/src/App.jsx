@@ -4,7 +4,8 @@ import axios from 'axios';
 import { LogIn, MessageSquare, Plus, Image as ImageIcon, Send, User as UserIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_BASE = 'http://localhost:5000';
+// const API_BASE = 'http://localhost:5000';     // Local Backend
+const API_BASE = 'https://chat-app-ra9y.onrender.com';
 const socket = io(API_BASE);
 
 function App() {
@@ -167,8 +168,8 @@ function App() {
               key={room._id}
               onClick={() => setCurrentRoom(room)}
               className={`w-full text-left p-3 rounded-xl transition-all ${currentRoom?._id === room._id
-                  ? 'bg-purple-600/20 border border-purple-500/50 text-purple-100'
-                  : 'hover:bg-slate-800/50 text-slate-400'
+                ? 'bg-purple-600/20 border border-purple-500/50 text-purple-100'
+                : 'hover:bg-slate-800/50 text-slate-400'
                 }`}
             >
               # {room.name}
@@ -200,8 +201,8 @@ function App() {
                       <span className="text-[10px] text-slate-600">{new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                     <div className={`p-4 rounded-2xl max-w-md ${msg.sender?._id === user._id
-                        ? 'bg-purple-600 text-white rounded-tr-none'
-                        : 'bg-slate-800 text-slate-100 rounded-tl-none'
+                      ? 'bg-purple-600 text-white rounded-tr-none'
+                      : 'bg-slate-800 text-slate-100 rounded-tl-none'
                       }`}>
                       {msg.imageUrl && (
                         <img
